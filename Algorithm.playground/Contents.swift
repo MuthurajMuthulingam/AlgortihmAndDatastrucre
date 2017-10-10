@@ -156,9 +156,45 @@ func getAllPrimes(Between lowestNumber:Int, highestNumber:Int) -> [Int] {
 }
 
 print("Check is Prime : \(isPrimeNumber(number: 3))")
-print("Prim Numbers : \(getAllPrimes(Between: 1, highestNumber: 1000))") */
+print("Prim Numbers : \(getAllPrimes(Between: 1, highestNumber: 1000))")
 
-/// polindrome 
+// factorial
+func findFactorial(OfNumber number:Int) -> Int {
+    var fact = 1
+    for i in 1...number {
+        fact = fact*i
+    }
+    return fact
+}
+
+print("Factorial : \(findFactorial(OfNumber: 9))") */
+
+// fibanacci series
+func findFibannaci(ofNumber number:Int) -> Int {
+    // base cases
+    if number <= 1 {
+        return 1
+    }
+    // other scenarios
+    var i = 2
+    var j = 1
+    var sum = j
+    print("0 \n\(j) \n\(sum)")
+    while i<=number {
+        let temp = sum
+        sum = sum+j
+        j = temp
+        print("\(sum)")
+        i = i+1
+    }
+    return sum
+}
+
+
+print("Fibanacci : \(findFibannaci(ofNumber: 13))")
+
+
+/// polindrome
 func isPolindrome(number:Int) -> Bool {
     var isPolindrome = false
     var reversedNumber = 0
@@ -177,6 +213,25 @@ func isPolindrome(number:Int) -> Bool {
 }
 
 print("polindrome : \(isPolindrome(number: 122))")
+
+// find Binary equalent
+func findBinary(OfNumber number:Int)-> String{
+    // base condition
+    if number < 2 {
+        return "\(number)"
+    }
+    // other conditions
+    var temp = number
+    var finalStr:String = ""
+    while temp > 1 {
+        let rem = number%2
+        finalStr = finalStr + "\(rem)"
+        temp = temp/2
+    }
+   return "\(temp)" + finalStr
+}
+
+print("find Binary : \(findBinary(OfNumber: 2))")
 
 //MARK: - Next level
 /// find pair of numbers matches given sum
@@ -210,7 +265,6 @@ func findPairNumbers(Array arr:[Int],sum:Int,sorted:Bool) -> Bool {
         for number in arr {
             if(number < sum) {
                 let complement = sum - number
-                print("comp: \(complement) and set: \(complements)")
                 if complements.contains(complement) {
                     isAvailable = true
                     break
@@ -263,12 +317,19 @@ func sortBinaryNumber(Array arr:[Int]) ->[Int] {
     var i=0
     var j=arr.count - 1
     while i<=j {
-        if sortedArray[i] == 1 || sortedArray[j] == 0{
-           sortedArray[i] = 0
-           sortedArray[j] = 1
+        if sortedArray[i] > sortedArray[j] {
+            sortedArray[i] = 0
+            sortedArray[j] = 1
+            i = i+1
+            j = j-1
+        } else if sortedArray[i] == 1 && sortedArray[j] == 1 {
+            j = j-1
+        } else if sortedArray[i] == 0 && sortedArray[j] == 0 {
+            i = i+1
+        } else {
+            i = i+1
+            j = j-1
         }
-        i = i+1
-        j = j-1
     }
     return sortedArray
 }
