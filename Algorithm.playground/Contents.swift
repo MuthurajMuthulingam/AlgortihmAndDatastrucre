@@ -190,7 +190,6 @@ func findFibannaci(ofNumber number:Int) -> Int {
     return sum
 }
 
-
 print("Fibanacci : \(findFibannaci(ofNumber: 13))")
 
 
@@ -311,7 +310,7 @@ func isPolindrome(string:String) -> Bool {
 
 
 //MARK: - Sorting
-// Sort 0,1
+/*// Sort 0,1
 func sortBinaryNumber(Array arr:[Int]) ->[Int] {
     var sortedArray:[Int] = arr
     var i=0
@@ -334,15 +333,97 @@ func sortBinaryNumber(Array arr:[Int]) ->[Int] {
     return sortedArray
 }
 
+func increament(Value value:Int) -> Int {
+    return value+1
+}
+
+func mySwapFunction<T:Equatable>(Values value1:inout T,value2:inout T) {
+    let temp = value1
+    value1 = value2
+    value2 = temp
+}
+
 func sort012(Array arr:[Int]) -> [Int] {
-    var sortedArray:[Int] = []
+    // keep low,mid,high
+    // compare mid and high
+    //
+    var sortedArray:[Int] = arr
+    var low=0,mid = 0,high = arr.count-1
+    while mid<=high {
+        switch sortedArray[mid]{
+        case 0:
+            // swap a[mid] and a[low]
+            mySwapFunction(Values: &sortedArray[low], value2: &sortedArray[mid])
+            // increament value
+            low = increament(Value: low)
+            mid = increament(Value: mid)
+            break
+        case 1:
+            mid = increament(Value: mid)
+            break
+        case 2:
+            // swap
+            mySwapFunction(Values: &sortedArray[mid], value2: &sortedArray[high])
+            // increament values
+            mid = increament(Value: mid)
+            // decreament high
+            high = high-1
+            break
+        default:
+            break
+        }
+    }
     return sortedArray
 }
 
 print("Sort 0,1 : \(sortBinaryNumber(Array: [0,1,0,1,0,1,0,0,0,1,0]))")
+print("sort 0,1,2: \(sort012(Array: [0,2,1,0,1,2,2,1]))")*/
+
+// Merge Sort
+func sortUsingMergeSort(unsortedArray:[Int]) -> [Int] {
+   var sortedArray = unsortedArray
+    // do sort the array
+    return sortedArray
+}
 
 //MARK: - Searching
-func findNumberInSortedArray(array:[Int],number:Int) -> Bool {
-    return true
+// binary search vs linear search
+func findNumber(array:[Int],number:Int) -> Bool {
+    // linear search : Time : O(N)
+    for n in array {
+        if n == number {
+            return true
+        }
+    }
+    return false
 }
+
+func binarySearchToCheckInSortedArray(array:[Int], Number number:Int,low l:Int,high h:Int) -> Bool {
+    // Binary Search : Time :O(LOGN)
+    var isPresent = false
+    // check the number is present inside array
+    let mid = (l+h)/2
+    if number == array[mid] { // at Mid position on array
+       isPresent = true
+    } else if number < array[mid] { // less than mid value
+      isPresent = binarySearchToCheckInSortedArray(array: array, Number: number, low: l, high: (mid-1))
+    } else if number > array[mid] { // greater than mid value
+       isPresent = binarySearchToCheckInSortedArray(array: array, Number: number, low: (mid+1), high: h)
+    }
+    return isPresent
+}
+
+func findNumberUsingBinarySearch(Array arr:[Int], Number number:Int) -> Bool {
+    // Base conditions
+    if arr.count == 0 {
+        return false
+    }
+    if arr.count == 1 {
+        return arr.first == number
+    }
+    return binarySearchToCheckInSortedArray(array: arr, Number: number, low: 0, high: (arr.count - 1))
+}
+
+print("Linear search element : \(findNumber(array: [1,2,3,4,5,6,7], number: 8))")
+print("Binary search : \(findNumberUsingBinarySearch(Array: [8], Number: 8))")
 

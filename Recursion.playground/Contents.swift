@@ -14,4 +14,19 @@ func findFactorialUsingRecursion(number:Int) -> Int {
     return number * findFactorialUsingRecursion(number: (number-1))
 }
 
-//print("factorial using recurion : \(findFactorialUsingRecursion(number: 9))")
+print("factorial using recurion : \(findFactorialUsingRecursion(number: 9))")
+
+// Fibannaci using recursion
+func findFibanacci(number:Int) -> Int {
+    // base case
+    if number<=1 {
+        print("\(number)")
+        return 1
+    } else {
+        let fib = findFibanacci(number: (number-2)) + findFibanacci(number: (number - 1))
+        print("\(fib)")
+        return fib
+    }
+}
+
+print("find fiba : \(findFibanacci(number: 6))")
