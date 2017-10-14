@@ -310,6 +310,13 @@ func isPolindrome(string:String) -> Bool {
 
 
 //MARK: - Sorting
+
+func mySwapFunction<T:Equatable>(Values value1:inout T,value2:inout T) {
+    let temp = value1
+    value1 = value2
+    value2 = temp
+}
+
 /*// Sort 0,1
 func sortBinaryNumber(Array arr:[Int]) ->[Int] {
     var sortedArray:[Int] = arr
@@ -335,12 +342,6 @@ func sortBinaryNumber(Array arr:[Int]) ->[Int] {
 
 func increament(Value value:Int) -> Int {
     return value+1
-}
-
-func mySwapFunction<T:Equatable>(Values value1:inout T,value2:inout T) {
-    let temp = value1
-    value1 = value2
-    value2 = temp
 }
 
 func sort012(Array arr:[Int]) -> [Int] {
@@ -383,6 +384,20 @@ print("sort 0,1,2: \(sort012(Array: [0,2,1,0,1,2,2,1]))")*/
 func sortUsingMergeSort(unsortedArray:[Int]) -> [Int] {
    var sortedArray = unsortedArray
     // do sort the array
+    // base condition
+    if sortedArray.count > 1 {
+       let low = 0
+       let high = sortedArray.count - 1
+       let mid = low+high/2
+       // iterative approach
+        while low<=high {
+            if sortedArray[mid] > sortedArray[high] {
+                mySwapFunction(Values: &sortedArray[mid], value2: &sortedArray[high])
+            } else if sortedArray[mid] < sortedArray[low] {
+                mySwapFunction(Values: &sortedArray[mid], value2: &sortedArray[low])
+            }
+        }
+    }
     return sortedArray
 }
 

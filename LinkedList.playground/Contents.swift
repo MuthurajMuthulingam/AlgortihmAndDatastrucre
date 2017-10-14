@@ -106,6 +106,28 @@ class LinkedList<M:Comparable> {
         return nil
     }
     
+    func reverse() {
+        // base condition
+        // consist only one node or Empty
+        if isEmpty() || (head?.next == nil) {
+            return
+        }
+        
+        // Initial values
+        var prev:Node<M>? = nil
+        var current:Node<M>? = head
+        var next:Node<M>? = head?.next
+        
+        while current != nil {
+            current?.next = prev
+            prev = current
+            current = next
+            next = current?.next
+        }
+        
+        head = current
+    }
+    
     func print() {
         if head == nil {
             debugPrint("LinkedList is Empty")
@@ -120,23 +142,22 @@ class LinkedList<M:Comparable> {
 }
 
 let myLinkedlist = LinkedList<Int>()
-
-print("\(myLinkedlist.print())")
-myLinkedlist.insert(Node: 1)
+myLinkedlist.insert(Node: 0)
+myLinkedlist.insertAsHead(Node: 1)
 myLinkedlist.insert(Node: 2)
 myLinkedlist.insert(Node: 3)
 myLinkedlist.insert(Node: 4)
 print("\(myLinkedlist.print())")
-myLinkedlist.insertAsHead(Node: 0)
+/*myLinkedlist.insertAsHead(Node: 0)
 print("\(myLinkedlist.isEmpty())")
 print("\(myLinkedlist.delete(NodeFromList: 6))")
 print("\(myLinkedlist.print())")
 print("\(myLinkedlist.findMidValue())")
+print("\(myLinkedlist.reverse())")
+print("reversed list : \(myLinkedlist.print())")
+print("Test")*/
 
 
-func findCenterOfLinkedList() {
-    
-}
 
 func findCycleInLinkedList() {
     
