@@ -128,6 +128,33 @@ class LinkedList<M:Comparable> {
         head = current
     }
     
+    func hasCycle() -> Bool {
+        var hasCycle = false
+        // Algorithm
+        // iterate one head at one node per itereation
+        // second head as two node per iteration
+        // if second head points to nil at some point then return NO
+        // if at any point first and second head points to same node then return YES
+        if !isEmpty(),head?.next != nil  {
+            if head?.data == head?.next?.data {
+                // refers to same node
+                hasCycle = true
+            }
+            var firstHead = head
+            var secondHead = head?.next?.next
+            while secondHead != nil {
+                if firstHead?.data == secondHead?.data {
+                   hasCycle = true
+                    break
+                }
+                
+                firstHead = firstHead?.next
+                secondHead = secondHead?.next?.next
+            }
+        }
+        return hasCycle
+    }
+    
     func print() {
         if head == nil {
             debugPrint("LinkedList is Empty")
@@ -148,22 +175,9 @@ myLinkedlist.insert(Node: 2)
 myLinkedlist.insert(Node: 3)
 myLinkedlist.insert(Node: 4)
 print("\(myLinkedlist.print())")
-/*myLinkedlist.insertAsHead(Node: 0)
-print("\(myLinkedlist.isEmpty())")
-print("\(myLinkedlist.delete(NodeFromList: 6))")
-print("\(myLinkedlist.print())")
-print("\(myLinkedlist.findMidValue())")
-print("\(myLinkedlist.reverse())")
-print("reversed list : \(myLinkedlist.print())")
-print("Test")*/
-
-
+print("Has Cycle : \(myLinkedlist.hasCycle())")
 
 func findCycleInLinkedList() {
-    
-}
-
-func reverseLinkedList() {
     
 }
 

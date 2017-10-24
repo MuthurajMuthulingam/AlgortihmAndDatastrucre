@@ -50,10 +50,10 @@ func stackUsingArray() {
 print("Stack using Array : \(stackUsingArray())")
 
 /// Stack using Linked List
-class StackUsingLinkedList {
-    private let MAX_LIMIT = 10
-    private
-}
+//class StackUsingLinkedList {
+//    private let MAX_LIMIT = 10
+//    private
+//}
 
 /// Implement Stack using Linked list
 func stackUsingLinkedList() {
@@ -61,8 +61,18 @@ func stackUsingLinkedList() {
 }
 
 /// Find Symbols are balanced, using Stack
-func findSymbolsAreBalancedUsingStack() {
-    
+func findSymbolsAreBalancedUsingStack(symbolString:String) -> Bool {
+    var isValid = true
+    var validOpen:String = "({["
+    var validClose:String = ")}]"
+    var myStack:StackUsingArray = StackUsingArray()
+    // check each char by char
+    // compare against open and close chars
+    // if open char then push in to stack
+    // if close char then pop out of stack
+    // after inserting all char check the stack is empty or not
+    // if empty then return true, otherwise false
+    return isValid
 }
 
 
