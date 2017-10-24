@@ -50,7 +50,7 @@ class LinkedList<M:Comparable> {
         }
         // traverse to last node at Linkedlist
         while temp?.next != nil {
-            temp = head?.next
+            temp = temp?.next
         }
         temp?.next = newNode
     }
@@ -76,7 +76,7 @@ class LinkedList<M:Comparable> {
                 if let dataFromNextNode = temp?.next?.data,
                     data == dataFromNextNode {
                     // make it nil when you find a data
-                    temp?.next = nil
+                    temp?.next = temp?.next?.next
                     isSuccess = true
                     break
                 }
@@ -122,10 +122,30 @@ class LinkedList<M:Comparable> {
             current?.next = prev
             prev = current
             current = next
-            next = current?.next
+            next = next?.next
         }
         
-        head = current
+        head = prev
+    }
+    
+    func hasCycle() -> Bool {
+        var hasCycle = false
+        // implement a logic to find a cycle
+        if !isEmpty() && head?.next?.data == head?.data { // point to same node
+            hasCycle = true
+        } else {
+            var temp = head
+            var forwardTemp = temp?.next?.next
+            while forwardTemp != nil {
+                if temp?.data == forwardTemp?.data {
+                    hasCycle = true
+                    break
+                }
+                temp = temp?.next
+                forwardTemp = forwardTemp?.next?.next
+            }
+        }
+        return hasCycle
     }
     
     func print() {
@@ -146,26 +166,18 @@ myLinkedlist.insert(Node: 0)
 myLinkedlist.insertAsHead(Node: 1)
 myLinkedlist.insert(Node: 2)
 myLinkedlist.insert(Node: 3)
-myLinkedlist.insert(Node: 4)
+myLinkedlist.insert(Node: 0)
+print("\(myLinkedlist.delete(NodeFromList: 3))")
 print("\(myLinkedlist.print())")
+print("\(myLinkedlist.reverse())")
+print("\(myLinkedlist.print())")
+print("\(myLinkedlist.hasCycle())")
 /*myLinkedlist.insertAsHead(Node: 0)
 print("\(myLinkedlist.isEmpty())")
-print("\(myLinkedlist.delete(NodeFromList: 6))")
 print("\(myLinkedlist.print())")
 print("\(myLinkedlist.findMidValue())")
-print("\(myLinkedlist.reverse())")
 print("reversed list : \(myLinkedlist.print())")
 print("Test")*/
-
-
-
-func findCycleInLinkedList() {
-    
-}
-
-func reverseLinkedList() {
-    
-}
 
 func reverseLinkedListUsingRecursion() {
     
