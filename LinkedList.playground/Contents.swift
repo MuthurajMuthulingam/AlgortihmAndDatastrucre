@@ -50,7 +50,7 @@ class LinkedList<M:Comparable> {
         }
         // traverse to last node at Linkedlist
         while temp?.next != nil {
-            temp = head?.next
+            temp = temp?.next
         }
         temp?.next = newNode
     }
@@ -76,7 +76,7 @@ class LinkedList<M:Comparable> {
                 if let dataFromNextNode = temp?.next?.data,
                     data == dataFromNextNode {
                     // make it nil when you find a data
-                    temp?.next = nil
+                    temp?.next = temp?.next?.next
                     isSuccess = true
                     break
                 }
@@ -122,34 +122,27 @@ class LinkedList<M:Comparable> {
             current?.next = prev
             prev = current
             current = next
-            next = current?.next
+            next = next?.next
         }
         
-        head = current
+        head = prev
     }
     
     func hasCycle() -> Bool {
         var hasCycle = false
-        // Algorithm
-        // iterate one head at one node per itereation
-        // second head as two node per iteration
-        // if second head points to nil at some point then return NO
-        // if at any point first and second head points to same node then return YES
-        if !isEmpty(),head?.next != nil  {
-            if head?.data == head?.next?.data {
-                // refers to same node
-                hasCycle = true
-            }
-            var firstHead = head
-            var secondHead = head?.next?.next
-            while secondHead != nil {
-                if firstHead?.data == secondHead?.data {
-                   hasCycle = true
+        // implement a logic to find a cycle
+        if !isEmpty() && head?.next?.data == head?.data { // point to same node
+            hasCycle = true
+        } else {
+            var temp = head
+            var forwardTemp = temp?.next?.next
+            while forwardTemp != nil {
+                if temp?.data == forwardTemp?.data {
+                    hasCycle = true
                     break
                 }
-                
-                firstHead = firstHead?.next
-                secondHead = secondHead?.next?.next
+                temp = temp?.next
+                forwardTemp = forwardTemp?.next?.next
             }
         }
         return hasCycle
@@ -173,13 +166,18 @@ myLinkedlist.insert(Node: 0)
 myLinkedlist.insertAsHead(Node: 1)
 myLinkedlist.insert(Node: 2)
 myLinkedlist.insert(Node: 3)
-myLinkedlist.insert(Node: 4)
+myLinkedlist.insert(Node: 0)
+print("\(myLinkedlist.delete(NodeFromList: 3))")
 print("\(myLinkedlist.print())")
-print("Has Cycle : \(myLinkedlist.hasCycle())")
-
-func findCycleInLinkedList() {
-    
-}
+print("\(myLinkedlist.reverse())")
+print("\(myLinkedlist.print())")
+print("\(myLinkedlist.hasCycle())")
+/*myLinkedlist.insertAsHead(Node: 0)
+print("\(myLinkedlist.isEmpty())")
+print("\(myLinkedlist.print())")
+print("\(myLinkedlist.findMidValue())")
+print("reversed list : \(myLinkedlist.print())")
+print("Test")*/
 
 func reverseLinkedListUsingRecursion() {
     
