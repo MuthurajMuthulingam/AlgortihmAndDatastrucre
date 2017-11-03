@@ -415,9 +415,51 @@ func rightShiftArray() {
     //TODO : implement a logic
 }
 
-func leftShiftArray() {
-    //TODO : implement a logic
+func leftShiftArray(arr:[Int], times n:Int) -> [Int] {
+    // [1,2,3,4,5] shift this 2 times
+    // result should be, [3,4,5,1,2]
+    var resultArray:[Int] = []
+    // base cases
+    if !arr.isEmpty && arr.count > n {
+        // algorithm
+        // iterate array once
+        // replace item at index
+        for i in 0..<arr.count {
+            let calculatedIndex = i+n
+            if calculatedIndex >= arr.count {
+               resultArray.append(arr[calculatedIndex - arr.count])
+            } else {
+               resultArray.append(arr[calculatedIndex])
+            }
+        }
+    }
+    return resultArray
 }
+
+func printFIZZBUZZ(n:Int) {
+    // Algorithm
+    // Print FIZZ , if i divided by 3
+    // Print BUZZ, if i divided by 5
+    // print FIZZBUZZ, if i divided by 3,5
+    for i in 1...n {
+        if (i%3 == 0) && (i%5 == 0) {
+            // print FIZZBUZZ
+            print("FIZZBUZZ")
+        } else if (i%3 == 0) {
+            // print FIZZ
+            print("FIZZ")
+        } else if (i%5 == 0) {
+            // print BUZZ
+            print("BUZZ")
+        } else {
+            // print i
+            print("\(i)")
+        }
+    }
+}
+
+print("Left shift Array : \(leftShiftArray(arr: [1,2,3,4,5], times: 2))")
+print("Print FIZZBUZZ : \(printFIZZBUZZ(n: 15))")
 
 //MARK: - Strings
 func maxOcurranceOfContigiousChar(string:String) -> (count:Int,char:Character?) {
