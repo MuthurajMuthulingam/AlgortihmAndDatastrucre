@@ -685,11 +685,44 @@ func findNumberUsingBinarySearch(Array arr:[Int], Number number:Int) -> Bool {
     return binarySearchToCheckInSortedArray(array: arr, Number: number, low: 0, high: (arr.count - 1))
 }
 
+func findNumberUsingBinarySearchIterativeWay(Array arr:[Int],Number num:Int) -> Bool {
+    var isPresent = false
+    // Base cases
+    if arr.count > 0 {
+        if arr.count == 1  {
+            isPresent = (arr[0] == num)
+        } else { // do binary search using iterative approach
+            var low = 0
+            var high = arr.count - 1
+            while low < high {
+                let mid = (low+high)/2
+                if arr[mid] == num {
+                    isPresent = true
+                    break
+                } else  if arr[mid] < arr[high] {
+                    low = mid+1
+                } else if arr[mid] > arr[high] {
+                    high = mid - 1
+                }
+            }
+        }
+    }
+    return isPresent
+}
+
 print("Linear search element : \(findNumber(array: [1,2,3,4,5,6,7], number: 6))")
 print("Binary search : \(findNumberUsingBinarySearch(Array: [8], Number: 8))")
+print("Binary Search iterative approach : \(findNumberUsingBinarySearchIterativeWay(Array: [1,2,3,4,5,8], Number: 8))")
+
+func findNumberInSortedRotatedArray(Array arra:[Int],number:Int) -> Bool {
+    var isPresent = false
+    // TODO : Complete Logic
+    return isPresent
+}
 
 // print Two dimentional array in spiral form
 func printArrayInSpiralForm() {
+    // TODO:  Complete logic ASAP
     let sampleArray = [[1,2,3,4],[5,6,7,8],[9,0,1,2]]
     // max row pointer and current row pointer
     // max coloumn pointer and current coloumn pointer
