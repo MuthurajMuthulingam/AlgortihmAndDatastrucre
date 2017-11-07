@@ -81,3 +81,7 @@ func decimalToBinary(decimalNumber number:Int) -> String {
 
 let number = 10
 print("Decimal to binary : \(number) => \(decimalToBinary(decimalNumber: number))")
+
+func findFirstUniqueNumber()  {
+    //TODO: Implement Logic
+}
