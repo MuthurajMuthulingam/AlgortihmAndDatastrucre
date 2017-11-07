@@ -22,7 +22,8 @@ func findMaximumConsecutiveOnesInArray(Array arr:[Int]) -> Int {
 print("Find MAX One count : \(findMaximumConsecutiveOnesInArray(Array: [0,1,0,1,1,1]))")
 
 func findMajorityElement(InArray arr:[Int]) -> Int {
-    var majorityElement = 0
+    var majorityElementCount = 0
+    var majorityEle = 0
     var numberCount:[Int:Int] = [:]
     // find count of each element
     for num in arr {
@@ -32,11 +33,12 @@ func findMajorityElement(InArray arr:[Int]) -> Int {
             numberCount[num] = 1
         }
         // update majority count
-        if numberCount[num]! > (arr.count/2) {
-            majorityElement = numberCount[num]!
+        if numberCount[num]! > majorityElementCount {
+            majorityElementCount = numberCount[num]!
+            majorityEle = num
         }
     }
-    return majorityElement
+    return majorityEle
 }
 
 func majorityElement(_ nums: [Int]) -> Int {

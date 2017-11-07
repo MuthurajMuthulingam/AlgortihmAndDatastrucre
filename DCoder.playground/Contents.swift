@@ -85,3 +85,58 @@ print("Decimal to binary : \(number) => \(decimalToBinary(decimalNumber: number)
 func findFirstUniqueNumber()  {
     //TODO: Implement Logic
 }
+
+func printPower(Number n:Int) {
+    for i in 0...n {
+        print("\(pow(2, i))", separator: "", terminator: ",")
+    }
+}
+
+printPower(Number: 5)
+
+func printAllPrimeNumber(FromNumber from:Int,ToNumber to:Int) {
+    for i in from...to {
+        var isPrime = true
+        for j in 2..<i {
+            if i%j == 0 {
+                isPrime = false
+                break
+            }
+        }
+        var message = "is not prime"
+        if isPrime {
+            message = "is prime"
+        }
+        print("\(i) \(message)")
+    }
+}
+
+print("prime Numbers : \(printAllPrimeNumber(FromNumber: 2, ToNumber: 20))")
+
+func countVowels(str:String) -> Int {
+    let vowels:[Character] = ["a","e","i","o","u"]
+    var count = 0
+    for char in str.characters {
+        if vowels.contains(char) {
+            count += 1
+        }
+    }
+    return count
+}
+
+countVowels(str: "aeio")
+
+func modernFibanacci(fromFirst first:Int,Second second:Int,N n:Int) -> Int {
+    var j=second
+    var sum = first+j
+    var k=0
+    while(k<(n-3)) {
+        let temp = sum
+        sum = (sum*sum) + j
+        j = temp
+        k += 1
+    }
+    return sum
+}
+
+print("Modern Fib : \(modernFibanacci(fromFirst: 0, Second: 1, N: 8))")
