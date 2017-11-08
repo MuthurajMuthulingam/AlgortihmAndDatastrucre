@@ -45,7 +45,7 @@ func findNumberUsingBinarySearch(SortedArray arr:[Int],NumberToFind num:Int) -> 
     return resultIndex
 }
 
-print("Find Number : \(findNumberUsingBinarySearch(SortedArray: [1,2,3,4,5,6,7], NumberToFind: 1))")
+print("Find Number : \(findNumberUsingBinarySearch(SortedArray: [1,2,3,4,5,6,7], NumberToFind: 7))")
 
 func countRotationCount(Array arr:[Int]) -> Int {
     var rotationCount = -1
@@ -65,9 +65,10 @@ func countRotationCount(Array arr:[Int]) -> Int {
                 let prev = (mid+arrCount-1)%arrCount
                 if arr[mid] <= arr[next] && arr[mid] <= arr[prev] { // found pivot point, i.e, lowest value point
                     rotationCount = mid
+                    break
                 } else if arr[mid] <= arr[high] {
                     high = mid-1
-                } else if arr[mid] <= arr[low] {
+                } else if arr[mid] >= arr[low] {
                     low = mid+1
                 }
             }
@@ -76,3 +77,46 @@ func countRotationCount(Array arr:[Int]) -> Int {
 }
 
 print("Rotation count : \(countRotationCount(Array: [7,1,2,3,4,5,6]))")
+
+func countOccuranceOfElement(InSortedArray arr:[Int],Number num:Int) -> Int {
+    var count = 0
+    // count of element = occurance of max index - occurance min index + 1
+    // Algorithm, Find a min and max index of elemnt to count using 
+    // Bimary search as Array is sorted
+    
+    return count
+}
+
+func findIndexOfElement(InSortedArray arr:[Int],Number num:Int, isLowerIndex:Bool) -> Int {
+    var resultIndex = -1
+    if !arr.isEmpty {
+            // do binary Search
+            var low = 0
+            var high = arr.count-1
+            while low <= high {
+                let mid = (low+high)/2
+                if arr[mid] == num {
+                    resultIndex = mid
+                    if isLowerIndex {
+                        high = mid-1
+                    } else {
+                        low = mid+1
+                    }
+                } else if arr[mid] < num {
+                    low = mid+1
+                } else {
+                    high = mid-1
+                }
+            }
+    }
+    return resultIndex
+}
+
+let arr = [1,2,3,4,5,6,6,6,7,7]
+let numberToFind = 7
+let lowerIndex = findIndexOfElement(InSortedArray: arr, Number: numberToFind, isLowerIndex: true)
+if lowerIndex > -1 {
+    let higherIndex = findIndexOfElement(InSortedArray: arr, Number: numberToFind, isLowerIndex: false)
+    let count = (higherIndex-lowerIndex)+1
+    print("Count : \(count)")
+}
