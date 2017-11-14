@@ -5,7 +5,7 @@ import UIKit
 var str = "Hello, playground"
 
 // MARK: - Algorithm collection
-
+// MARK: - Array
 /// find minimum value
 func findMinimumValue(FromArray a:[Int]) -> Int {
     // iterate once throughout array.
@@ -740,3 +740,35 @@ func printArrayInSpiralForm() {
     //var col =
 }
 
+func mergeTwoSortedArray(Array1:[Int],Array2:[Int]) -> [Int] {
+    // TODO:  complete logic
+    var i=0,j=0,k=0
+    var result:[Int] = []
+    let maxCount = Array1.count + Array2.count
+    while k<maxCount {
+        print("i: \(i), j: \(j) , k: \(k), maxCount : \(maxCount)")
+        if i<Array1.count && j<Array2.count {
+            if Array1[i] == Array2[j] {
+                result.append(Array1[i])
+                i = i+1
+                j=j+1
+            } else if Array1[i] < Array2[j] {
+                result.append(Array1[i])
+                i = i+1
+            } else {
+                result.append(Array2[j])
+                j = j+1
+            }
+        } else if i<Array1.count {
+            result.append(Array1[i])
+            i = i+1
+        } else {
+            result.append(Array2[j])
+            j = j+1
+        }
+        k=k+1
+    }
+    return result
+}
+
+print("Merge Two sorted array. \(mergeTwoSortedArray(Array1: [1,2,3,4], Array2: [6,5]))")

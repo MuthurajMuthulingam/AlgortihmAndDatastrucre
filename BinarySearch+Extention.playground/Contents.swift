@@ -156,6 +156,7 @@ func findElement(InSortedRotatedArray arr:[Int], ElementToFind num:Int) -> Int {
                     } else {
                         low = mid+1
                     }
+                    
                 }
             }
         }

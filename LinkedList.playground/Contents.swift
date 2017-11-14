@@ -180,5 +180,12 @@ print("reversed list : \(myLinkedlist.print())")
 print("Test")*/
 
 func reverseLinkedListUsingRecursion() {
-    
+   // TODO: Complete Logic
+}
+
+func mergeSortedLinkedList<T:Comparable>(node1:Node<T>,node2:Node<T>) -> Node<T>? {
+    var newNode:Node<T>? = nil
+    if node1.data > node2.data {
+        
+    }
 }
