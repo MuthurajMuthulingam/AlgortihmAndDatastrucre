@@ -107,11 +107,30 @@ func findMaxCountDuplicates(InArray arr:[Int]) -> (number:Int,count:Int) {
     return (number,maximumCount)
 }
 
+func findFirstDuplicate(InArray arr:[Int]) -> (index:Int, value:Int) {
+    // Algorithm : 
+    /*
+     - count all duplicates and its count
+     - traverse through array once and check count against each number
+     - stop the iteration as soon as the first duplicate is identified
+    */
+    // Implement Logic
+    let countDict = countDuplicates(InArray: arr)
+    for (index,num) in arr.enumerated() {
+        if let count = countDict[num],
+            count > 1 {
+            return (index,num)
+        }
+    }
+    return (-1,-1)
+}
+
 
 print("find is duplicate : \(isDuplicateAvailable(InArray: [1,4,3,2,5,6,5]))")
 print("find is duplicate using encoding : \(isDuplicateUsingEncoding(Array: [1,4,3,2,5,6]))")
 print("Count : \(countDuplicates(InArray: [1,4,3,2,5,6,5]))")
 print("Max count : \(findMaxCountDuplicates(InArray: [1,4,3,2,5,6]))")
+print("First Duplicate in Array : \(findFirstDuplicate(InArray: [1,4,3,2,5,6,5]))")
 
 //MARK: - Polindrome , Prime Number
 

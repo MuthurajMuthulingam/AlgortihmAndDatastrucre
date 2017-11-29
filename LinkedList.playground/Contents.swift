@@ -63,6 +63,10 @@ class LinkedList<M:Comparable> {
         return head == nil
     }
     
+    func getHead() -> Node<M>? {
+        return self.head
+    }
+    
     func delete(NodeFromList data:M) -> Bool {
         var isSuccess = false
         if !isEmpty() && head?.next == nil,
@@ -184,8 +188,58 @@ func reverseLinkedListUsingRecursion() {
 }
 
 func mergeSortedLinkedList<T:Comparable>(node1:Node<T>,node2:Node<T>) -> Node<T>? {
-    var newNode:Node<T>? = nil
-    if node1.data > node2.data {
-        
+    // Base condition
+    var newHead:Node<T>? = nil
+    var sortedNode:Node<T>? = nil
+    var tempNode1:Node<T>? = node1
+    var tempNode2:Node<T>? = node2
+    if node1.data >= node2.data {
+       sortedNode = node2
+        tempNode2 = node2.next
+    } else {
+        sortedNode = node1
+        tempNode1 = node2.next
+    }
+    newHead = sortedNode
+    
+    while sortedNode != nil {
+        if tempNode1 != nil && tempNode2 != nil {
+            if (tempNode2?.data)! >= (tempNode1?.data)! {
+                sortedNode?.next = tempNode1
+                tempNode1 = tempNode1?.next
+            } else {
+                sortedNode?.next = tempNode2
+                tempNode2 = tempNode2?.next
+            }
+            sortedNode = sortedNode?.next
+        } else if tempNode1 == nil {
+            sortedNode?.next = tempNode2
+            tempNode2 = tempNode2?.next
+        } else {
+            sortedNode?.next = tempNode1
+            tempNode1 = tempNode1?.next
+        }
+    }
+    return newHead
+}
+
+func print<T:Comparable>(Node node:Node<T>?) {
+    var temp:Node<T>? = node
+    while temp != nil {
+        print("\(temp?.data)")
+        temp = temp?.next
     }
 }
+
+
+let linkedList1 = LinkedList<Int>()
+linkedList1.insert(Node: 1)
+linkedList1.insert(Node: 2)
+let node1 = linkedList1.getHead()
+
+let linkedList2 = LinkedList<Int>()
+linkedList2.insert(Node: 3)
+linkedList2.insert(Node: 4)
+let node2 = linkedList2.getHead()
+let mergedList = mergeSortedLinkedList(node1: node1!, node2: node2!)
+print("\(print(Node: mergedList))")
