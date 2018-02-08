@@ -125,9 +125,23 @@ func findFirstDuplicate(InArray arr:[Int]) -> (index:Int, value:Int) {
     return (-1,-1)
 }
 
+func findFirstUniqueItem(InArray arr:[Int]) -> Int {
+    if !arr.isEmpty {
+        let countDict = countDuplicates(InArray: arr)
+        for num in arr {
+            if let count = countDict[num],
+                count == 1 {
+                return num
+            }
+        }
+    }
+    return -1
+}
 
-print("find is duplicate : \(isDuplicateAvailable(InArray: [1,4,3,2,5,6,5]))")
-print("find is duplicate using encoding : \(isDuplicateUsingEncoding(Array: [1,4,3,2,5,6]))")
+let unique = findFirstUniqueItem(InArray: [1,4,3,2,5,6,5])
+
+/*print("find is duplicate : \(isDuplicateAvailable(InArray: [1,4,3,2,5,6,5]))")
+print("find is duplicate using encoding : \(isDuplicateUsingEncod bbing(Array: [1,4,3,2,5,6]))")
 print("Count : \(countDuplicates(InArray: [1,4,3,2,5,6,5]))")
 print("Max count : \(findMaxCountDuplicates(InArray: [1,4,3,2,5,6]))")
 print("First Duplicate in Array : \(findFirstDuplicate(InArray: [1,4,3,2,5,6,5]))")
@@ -791,3 +805,5 @@ func mergeTwoSortedArray(Array1:[Int],Array2:[Int]) -> [Int] {
 }
 
 print("Merge Two sorted array. \(mergeTwoSortedArray(Array1: [1,2,3,4], Array2: [6,5]))")
+
+*/

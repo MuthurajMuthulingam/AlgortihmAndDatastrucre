@@ -13,7 +13,7 @@ func findTwoChars(InString s:String, count:Int)->Int{
     // check     next char, if different then update second char
     
     // Base cases
-    if count < 2{ return 0}
+    if count < 2{ return 0 }
     else if count == 2 {
         if (s.characters.first == s.characters.last) { return 0 }
         return count
@@ -27,7 +27,7 @@ func findTwoChars(InString s:String, count:Int)->Int{
         return 0
     }
 }
-print("remove : \(findTwoChars(InString: "Muthuraj", count: 8))")
+//print("remove : \(findTwoChars(InString: "Muthuraj", count: 8))")
 
 //    func remove(Char c:Character, FromString s:String) -> String{
 //        var string = s

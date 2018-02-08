@@ -6,12 +6,12 @@ var str = "Hello, playground"
 
 //MARK: - Stack
 /// Stack using Array
-class StackUsingArray {
+class StackUsingArray<M> {
     private let MAX_LIMIT = 10
     private var top:Int = -1
-    private var stack:[Int] = []
+    private var stack:[M] = []
     
-    func push(Item:Int) -> Bool {
+    func push(Item:M) -> Bool {
         // check stack overflow
         if stack.count == MAX_LIMIT {
             return false
@@ -21,10 +21,10 @@ class StackUsingArray {
         return true
     }
     
-    func pop() -> Int {
+    func pop() -> M? {
         // check Stack underflow
         if top == -1 {
-            return top
+            return nil
         }
         let item = stack[top]
         stack.remove(at: top)
@@ -39,9 +39,9 @@ class StackUsingArray {
 
 /// Implement Stack using Array
 func stackUsingArray() {
-    let s = StackUsingArray()
+    let s = StackUsingArray<Character>()
     print("Peak : \(s.peak())")
-    print("Push : \(s.push(Item: 1))")
+    print("Push : \(s.push(Item: "a"))")
     //print("Peak : \(s.peak())")
     print("Pop : \(s.pop())")
     print("Peak : \(s.peak())")
